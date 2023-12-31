@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-
+import Header from './components/Header';
+import Game from './components/Game';
+import Result from './components/Result';
+import Relues from './components/Rules';
+import Clock from './components/Time';
 function App() {
+  const [IsChoice, setIsChoice] = useState(false);
+  const getChoice = (data) => {
+    !data ? setIsChoice(false) : setIsChoice(true)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Header />
+      {
+        IsChoice ? <Result choice={getChoice} /> : <Game choice={getChoice} />
+      }
+
+      <Relues />
+      {/* <Clock/> */}
     </div>
   );
 }
